@@ -1,14 +1,36 @@
-# Project
+# MetaAlign
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+This is the official implementation for:
+> [**MetaAlign: Coordinating Domain Alignment and Classification for Unsupervised Domain Adaptation**](http://arxiv.org/abs/2004.01888),            
+> Guoqiang Wei, Cuiling Lan, Wenjun Zeng, Zhibo Chen,      
+> CVPR 2021 | [arXiv](https://arxiv.org/abs/2103.13575)
 
-As the maintainer of this project, please make a few updates:
+## Abstract
+For unsupervised domain adaptation (UDA), to alleviate the effect of domain shift, many approaches align the source and target domains in the feature space by adversarial learning or by explicitly aligning their statistics. However, the optimization objective of such domain alignment is generally not coordinated with that of the object classification task itself such that their descent directions for optimization may be inconsistent. This will reduce the effectiveness of domain alignment in improving the performance of UDA. In this paper, we aim to study and alleviate the optimization inconsistency problem between the domain alignment and classification tasks. We address this by proposing an effective meta-optimization based strategy dubbed MetaAlign, where we treat the domain alignment objective and the classification objective as the meta-train and meta-test tasks in a meta-learning scheme. MetaAlign encourages both tasks to be optimized in a coordinated way, which maximizes the inner product of the gradients of the two tasks during training. Experimental results demonstrate the effectiveness of our proposed method on top of various alignment-based baseline approaches, for tasks of object classification and object detection.
+![](assets/pipeline.png)
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+## Usage
+
+- MetaAlign for [UDA of classification](classification/README.md).
+- MetaAlign for [UDA of object detection](detection/README.md).
+
+## Citation
+
+```
+@inproceedings{wei2021metaalign,
+  title={MetaAlign: Coordinating Domain Alignment and Classification for Unsupervised Domain Adaptation},
+  author={Wei, Guoqiang and Lan, Cuiling and Zeng, Wenjun and Chen, Zhibo},
+  booktitle={CVPR},
+  pages={16643--16653},
+  year={2021}
+}
+
+```
+
+## Acknowledgement
+
+We borrowed code from [GVB](https://github.com/cuishuhao/GVB) and [DA_Detection](https://github.com/VisionLearningGroup/DA_Detection).
+
 
 ## Contributing
 
