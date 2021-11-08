@@ -132,3 +132,10 @@ dmypy.json
 .vscode/
 *.zip
 external/
+.amltconfig
+itp/
+works/
+amlt/
+**/back/
+dataset_map/back/process.py
+tools/
