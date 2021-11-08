@@ -1,4 +1,4 @@
-**# ToAlign
+# ToAlign
 
 This is the official implementation for:
 > [**ToAlign: Task-oriented Alignment for Unsupervised Domain Adaptation**](http://arxiv.org/abs/2004.01888),            
@@ -12,7 +12,7 @@ This is the official implementation for:
 ## Abstract
 
 Unsupervised domain adaptive classifcation intends to improve the classifcation performance on unlabeled target domain. To alleviate the adverse effect of domain shift, many approaches align the source and target domains in the feature space. However, a feature is usually taken as a whole for alignment without explicitly making domain alignment proactively serve the classifcation task, leading to sub-optimal solution. In this paper, we propose an effective Task-oriented Alignment (__*ToAlign*__) for unsupervised domain adaptation (UDA). We study what features should be aligned across domains and propose to make the domain alignment proactively serve classifcation by performing feature decomposition and alignment under the guidance of the prior knowledge induced from the classifcation task itself. Particularly, we explicitly decompose a feature in the source domain into a task-related/discriminative feature that should be aligned, and a task-irrelevant feature that should be avoided/ignored, based on the classifcation meta-knowledge.
-  <img src="assets/pipeline.png"/>
+  <img src="assets/toalign.png"/>
 
 
 ## Usage
@@ -67,4 +67,4 @@ Any use of third-party trademarks or logos are subject to those third-party's po
 
 ## Acknowledgement
 
-We borrowed some code from [GVB](https://github.com/cuishuhao/GVB) and [DA_Detection](https://github.com/VisionLearningGroup/DA_Detection).**
+We borrowed some code from [GVB](https://github.com/cuishuhao/GVB) and [DA_Detection](https://github.com/VisionLearningGroup/DA_Detection).
