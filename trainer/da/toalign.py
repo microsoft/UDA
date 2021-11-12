@@ -3,13 +3,15 @@
 # Licensed under The MIT License
 # --------------------------------------------------------
 
+import logging
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
 from utils.torch_funcs import entropy_func
-from trainer.da.back.dannp import DANNP
 import utils.loss as loss
+from .dann import DANN
 from models import *
 from utils.utils import get_coeff
 
@@ -17,7 +19,7 @@ from utils.utils import get_coeff
 __all__ = ['ToAlign']
 
 
-class ToAlign(DANNP):
+class ToAlign(DANN):
     def __init__(self, cfg):
         super(ToAlign, self).__init__(cfg)
 
@@ -33,6 +35,22 @@ class ToAlign(DANNP):
         basenet = eval(basenet_name)(**kwargs).cuda()
 
         return basenet
+
+    def build_models(self):
+        logging.info(f'--> building models: {self.cfg.MODEL.BASENET}')
+        # backbone
+        self.base_net = self.build_base_models()
+        # discriminator
+        self.d_net = eval(self.cfg.MODEL.DNET)(
+            in_feature=self.cfg.DATASET.NUM_CLASSES,
+            hidden_size=self.cfg.MODEL.D_HIDDEN_SIZE,
+            out_feature=self.cfg.MODEL.D_OUTDIM
+        ).cuda()
+
+        self.registed_models = {'base_net': self.base_net, 'd_net': self.d_net}
+        self.model_parameters()
+        parameter_list = self.base_net.get_parameters() + self.d_net.get_parameters()
+        self.build_optim(parameter_list)
 
     def one_step(self, data_src, data_tar):
         inputs_src, labels_src = data_src['image'].cuda(), data_src['label'].cuda()

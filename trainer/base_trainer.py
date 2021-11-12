@@ -43,6 +43,8 @@ class BaseTrainer:
         # dataset loaders
         if self.cfg.DATASET.NAME == 'office_home':
             dataset = OfficeHome
+        elif self.cfg.DATASET.NAME == 'domainnet':
+            dataset = DomainNet
         else:
             raise ValueError(f'Dataset {self.cfg.DATASET.NAME} not found')
 
@@ -68,7 +70,7 @@ class BaseTrainer:
             drop_last=True
         )
         self.dataset_loaders['target_test'] = DataLoader(
-            dataset(self.cfg.DATASET.ROOT, self.cfg.DATASET.TARGET, status='test', trim=self.cfg.DATASET.TRIM),
+            dataset(self.cfg.DATASET.ROOT, self.cfg.DATASET.TARGET, status='test'),
             batch_size=self.cfg.TRAIN.BATCH_SIZE_TEST,
             shuffle=False,
             num_workers=self.cfg.WORKERS,

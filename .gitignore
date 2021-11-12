@@ -136,6 +136,6 @@ external/
 itp/
 works/
 amlt/
-**/back/
+trainer/da/back/
 dataset_map/back/process.py
 tools/

@@ -1,0 +1,32 @@
+TRAINER: 'ToAlign'
+
+TASK:
+  NAME: 'UDA'
+
+MODEL:
+  PRETRAIN: True
+  BASENET: 'resnet50'
+  DNET: 'Discriminator'
+  D_INDIM: 1024
+  D_OUTDIM: 1
+
+DATASET:
+  NAME: 'office_home'
+  ROOT: 'data/office_home'
+
+METHOD:
+  W_ALG: 1.0
+  ENT: True
+  HDA:
+    W_HDA: 1.0
+
+
+TRAIN:
+  BATCH_SIZE_SOURCE: 36
+  BATCH_SIZE_TARGET: 36
+  LR: 0.001
+  TTL_ITE: 8000
+  TEST_FREQ: 500
+  PRINT_FREQ: 50
+  SAVE_FREQ: 5000
+  OUTPUT_ROOT: 'exp'

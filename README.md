@@ -17,6 +17,18 @@ Unsupervised domain adaptive classifcation intends to improve the classifcation 
 
 ## Usage
 
+### Dependency
+
+```bash
+torch>=1.7.0
+torchvision>=0.8.0
+termcolor>=1.1.0
+yacs>=0.1.8
+timm>=0.4.12
+```
+
+### Train
+
 - [x] Single-source UDA on `office_home` dataset:
     ```bash
     # source and target domains can be defined by "--source" and "--target"

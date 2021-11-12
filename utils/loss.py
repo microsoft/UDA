@@ -60,6 +60,39 @@ def d_align_uda(softmax_output: Tensor, features: Tensor = None, d_net=None,
     return loss_alg
 
 
+def d_align_msda(softmax_output: Tensor, features: Tensor = None, d_net=None,
+                 coeff: float = None, ent: bool = False, batchsizes: list = []):
+    d_input = softmax_output if features is None else features
+    d_output = d_net(d_input, coeff=coeff)
+
+    labels = torch.cat(
+        (torch.tensor([1] * batchsizes[0]).long(), torch.tensor([0] * batchsizes[1]).long()), 0
+    ).cuda()  # [B_S + B_T]
+
+    if ent:
+        x = softmax_output
+        entropy = entropy_func(x)
+        entropy.register_hook(grl_hook(coeff))
+        entropy = torch.exp(-entropy)
+
+        source_mask = torch.ones_like(entropy)
+        source_mask[batchsizes[0]:] = 0
+        source_weight = entropy * source_mask
+        target_mask = torch.ones_like(entropy)
+        target_mask[:batchsizes[0]] = 0
+        target_weight = entropy * target_mask
+        weight = source_weight / torch.sum(source_weight).detach().item() + \
+                 target_weight / torch.sum(target_weight).detach().item()
+
+    else:
+        weight = torch.ones_like(labels).float() / softmax_output.shape[0]
+
+    loss_ce = nn.CrossEntropyLoss(reduction='none')(d_output, labels)
+    loss_alg = torch.sum(weight * loss_ce)
+
+    return loss_alg
+
+
 class MMD(nn.Module):
     def __init__(self, kernel_mul=2.0, kernel_num=5):
         super(MMD, self).__init__()

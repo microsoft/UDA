@@ -105,8 +105,21 @@ def get_default_and_update_cfg(args):
             'a': 'art',
             'c': 'clipart',
             'r': 'real_world'
-        }
+        },
+        'domainnet': {
+            'c': 'clipart',
+            'i': 'infograph',
+            'p': 'painting',
+            'q': 'quickdraw',
+            'r': 'real',
+            's': 'sketch',
+        },
     }
+
+    # MSDA
+    if cfg.TASK.NAME == 'MSDA':
+        args.source = [k for k in maps[cfg.DATASET.NAME].keys()]
+        args.source.remove(args.target[0])
 
     # source & target
     cfg.DATASET.SOURCE = [maps[cfg.DATASET.NAME][_d] if _d in maps[cfg.DATASET.NAME].keys() else _
