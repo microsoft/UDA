@@ -143,7 +143,7 @@ class BaseTrainer:
 
             self.current_lr = self.lr_scheduler(
                 self.optimizer,
-                ite_rate=self.ite / self.cfg.TRAIN.TTL_ITE,
+                ite_rate=self.ite / self.cfg.TRAIN.TTL_ITE * self.cfg.METHOD.HDA.LR_MULT,
                 lr=self.cfg.TRAIN.LR,
             )
 
