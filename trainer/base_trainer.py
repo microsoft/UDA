@@ -234,7 +234,7 @@ class BaseTrainer:
     def test_func(self, loader, model):
         with torch.no_grad():
             iter_test = iter(loader)
-            print_freq = max(len(loader) // 5, self.cfg.TRAIN.TEST_FREQ)
+            print_freq = max(len(loader) // 5, self.cfg.TRAIN.PRINT_FREQ)
             accs = AverageMeter()
             for i in range(len(loader)):
                 if i % print_freq == print_freq - 1:
