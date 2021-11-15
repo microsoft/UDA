@@ -83,6 +83,7 @@ _C.METHOD.ENT = False
 # HDA
 _C.METHOD.HDA = CN()
 _C.METHOD.HDA.W_HDA = 1.0
+_C.METHOD.HDA.LR_MULT = 1.0
 
 
 def get_default_and_update_cfg(args):
