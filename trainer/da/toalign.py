@@ -80,10 +80,17 @@ class ToAlign(DANN):
         loss_cls_tar = F.cross_entropy(outputs_all_tar[1].data, labels_tar)
 
         # domain alignment
-        loss_alg = loss.d_align_uda(
-            softmax_output=softmax_all, d_net=self.d_net,
-            coeff=get_coeff(self.ite, max_iter=self.cfg.TRAIN.TTL_ITE), ent=self.cfg.METHOD.ENT
-        )
+        if self.cfg.TASK.NAME == 'UDA':
+            loss_alg = loss.d_align_uda(
+                softmax_output=softmax_all, d_net=self.d_net,
+                coeff=get_coeff(self.ite, max_iter=self.cfg.TRAIN.TTL_ITE), ent=self.cfg.METHOD.ENT
+            )
+        elif self.cfg.TASK.NAME == 'MSDA':
+            loss_alg = loss.d_align_msda(
+                softmax_output=softmax_all, d_net=self.d_net,
+                coeff=get_coeff(self.ite, max_iter=self.cfg.TRAIN.TTL_ITE), ent=self.cfg.METHOD.ENT,
+                batchsizes=[inputs_src.shape[0], inputs_tar.shape[0]]
+            )
 
         # hda
         loss_hda = focals_all.abs().mean()

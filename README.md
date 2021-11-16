@@ -34,7 +34,10 @@ timm>=0.4.12
     # source and target domains can be defined by "--source" and "--target"
     python main.py configs/uda_office_home_toalign.yaml --data_root ROOT_TO_OFFICE_HOME --source [a|c|p|r] --target [a|c|p|r] --output_root exp
     ```
-- [ ] Multi-source UDA on `DomainNet` dataset:
+- [x] Multi-source UDA on `DomainNet` dataset:
+  ```bash
+   python main.py configs/msda_domainnet_toalign.yaml --data_root ROOT_TO_DOMAINNET --target [c|i|p|q|r|s] --output_root exp
+  ```
 - [ ] Semi-supervised DA on `DomainNet` dataset:
 
 ## Citation

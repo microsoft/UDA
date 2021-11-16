@@ -83,7 +83,7 @@ _C.METHOD.ENT = False
 # HDA
 _C.METHOD.HDA = CN()
 _C.METHOD.HDA.W_HDA = 1.0
-_C.METHOD.HDA.LR_MULT = 1.0
+_C.METHOD.HDA.LR_MULT = 1.0  # set as 5.0 to tune the lr_schedule to follow the setting of original HDA
 
 
 def get_default_and_update_cfg(args):

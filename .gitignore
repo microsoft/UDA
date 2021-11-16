@@ -139,3 +139,4 @@ amlt/
 trainer/da/back/
 dataset_map/back/process.py
 tools/
+/configs/back/
