@@ -83,6 +83,7 @@ _C.METHOD.ENT = False
 # HDA
 _C.METHOD.HDA = CN()
 _C.METHOD.HDA.W_HDA = 1.0
+_C.METHOD.HDA.LR_MULT = 1.0  # set as 5.0 to tune the lr_schedule to follow the setting of original HDA
 
 
 def get_default_and_update_cfg(args):
@@ -105,8 +106,21 @@ def get_default_and_update_cfg(args):
             'a': 'art',
             'c': 'clipart',
             'r': 'real_world'
-        }
+        },
+        'domainnet': {
+            'c': 'clipart',
+            'i': 'infograph',
+            'p': 'painting',
+            'q': 'quickdraw',
+            'r': 'real',
+            's': 'sketch',
+        },
     }
+
+    # MSDA
+    if cfg.TASK.NAME == 'MSDA':
+        args.source = [k for k in maps[cfg.DATASET.NAME].keys()]
+        args.source.remove(args.target[0])
 
     # source & target
     cfg.DATASET.SOURCE = [maps[cfg.DATASET.NAME][_d] if _d in maps[cfg.DATASET.NAME].keys() else _

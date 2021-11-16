@@ -1,0 +1,33 @@
+TRAINER: 'ToAlign'
+
+TASK:
+  NAME: 'MSDA'
+
+MODEL:
+  PRETRAIN: True
+  BASENET: 'resnet101'
+  DNET: 'Discriminator'
+  D_INDIM: 1024
+  D_OUTDIM: 2
+
+DATASET:
+  NAME: 'domainnet'
+  ROOT: 'data/domainnet'
+  TRIM: 2000
+
+METHOD:
+  W_ALG: 1.0
+  ENT: True
+  HDA:
+    W_HDA: 1.0
+
+
+TRAIN:
+  BATCH_SIZE_SOURCE: 80
+  BATCH_SIZE_TARGET: 16
+  LR: 0.0003
+  TTL_ITE: 50000
+  TEST_FREQ: 2000
+  PRINT_FREQ: 50
+  SAVE_FREQ: 10000
+  OUTPUT_ROOT: 'exp'

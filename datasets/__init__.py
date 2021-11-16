@@ -4,3 +4,4 @@
 # --------------------------------------------------------
 
 from .office_home import OfficeHome
+from .domainnet import DomainNet

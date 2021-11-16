@@ -43,6 +43,8 @@ class BaseTrainer:
         # dataset loaders
         if self.cfg.DATASET.NAME == 'office_home':
             dataset = OfficeHome
+        elif self.cfg.DATASET.NAME == 'domainnet':
+            dataset = DomainNet
         else:
             raise ValueError(f'Dataset {self.cfg.DATASET.NAME} not found')
 
@@ -68,7 +70,7 @@ class BaseTrainer:
             drop_last=True
         )
         self.dataset_loaders['target_test'] = DataLoader(
-            dataset(self.cfg.DATASET.ROOT, self.cfg.DATASET.TARGET, status='test', trim=self.cfg.DATASET.TRIM),
+            dataset(self.cfg.DATASET.ROOT, self.cfg.DATASET.TARGET, status='test'),
             batch_size=self.cfg.TRAIN.BATCH_SIZE_TEST,
             shuffle=False,
             num_workers=self.cfg.WORKERS,
@@ -141,7 +143,7 @@ class BaseTrainer:
 
             self.current_lr = self.lr_scheduler(
                 self.optimizer,
-                ite_rate=self.ite / self.cfg.TRAIN.TTL_ITE,
+                ite_rate=self.ite / self.cfg.TRAIN.TTL_ITE * self.cfg.METHOD.HDA.LR_MULT,
                 lr=self.cfg.TRAIN.LR,
             )
 
@@ -232,7 +234,7 @@ class BaseTrainer:
     def test_func(self, loader, model):
         with torch.no_grad():
             iter_test = iter(loader)
-            print_freq = max(len(loader) // 5, self.cfg.TRAIN.TEST_FREQ)
+            print_freq = max(len(loader) // 5, self.cfg.TRAIN.PRINT_FREQ)
             accs = AverageMeter()
             for i in range(len(loader)):
                 if i % print_freq == print_freq - 1:

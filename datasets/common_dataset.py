@@ -19,6 +19,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 class CommonDataset(Dataset):
     def __init__(self, is_train: bool = True):
         self.data = []
+        self.domain_id = []
         self.image_root = ''
         self.transform = transform_train() if is_train else transform_test()
         self._domains = None
@@ -29,8 +30,10 @@ class CommonDataset(Dataset):
         return self._domains
 
     def __getitem__(self, index):
-        domain = random.randint(0, self.num_domain - 1)
-        path, label = self.data[domain][index]
+        # domain = random.randint(0, self.num_domain - 1)
+        # path, label = self.data[domain][index]
+        domain = self.domain_id[index]
+        path, label = self.data[index]
         path = os.path.join(self.image_root, path)
         with Image.open(path) as image:
             image = image.convert('RGB')

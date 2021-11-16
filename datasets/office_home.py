@@ -40,7 +40,8 @@ class OfficeHome(CommonDataset):
             trim=0
         )
 
-        self.data = [data]
+        self.data = data
+        self.domain_id = [0] * len(self.data)
 
     def __len__(self):
-        return len(self.data[0])
+        return len(self.data)

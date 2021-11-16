@@ -17,12 +17,27 @@ Unsupervised domain adaptive classifcation intends to improve the classifcation 
 
 ## Usage
 
+### Dependency
+
+```bash
+torch>=1.7.0
+torchvision>=0.8.0
+termcolor>=1.1.0
+yacs>=0.1.8
+timm>=0.4.12
+```
+
+### Train
+
 - [x] Single-source UDA on `office_home` dataset:
     ```bash
     # source and target domains can be defined by "--source" and "--target"
     python main.py configs/uda_office_home_toalign.yaml --data_root ROOT_TO_OFFICE_HOME --source [a|c|p|r] --target [a|c|p|r] --output_root exp
     ```
-- [ ] Multi-source UDA on `DomainNet` dataset:
+- [x] Multi-source UDA on `DomainNet` dataset:
+  ```bash
+   python main.py configs/msda_domainnet_toalign.yaml --data_root ROOT_TO_DOMAINNET --target [c|i|p|q|r|s] --output_root exp
+  ```
 - [ ] Semi-supervised DA on `DomainNet` dataset:
 
 ## Citation
