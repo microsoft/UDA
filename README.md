@@ -24,7 +24,6 @@ torch>=1.7.0
 torchvision>=0.8.0
 termcolor>=1.1.0
 yacs>=0.1.8
-timm>=0.4.12
 ```
 
 ### Train
