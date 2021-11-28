@@ -1,11 +1,11 @@
 # ToAlign
 
 This is the official implementation for:
-> [**ToAlign: Task-oriented Alignment for Unsupervised Domain Adaptation**](http://arxiv.org/abs/2004.01888),            
+> [**ToAlign: Task-oriented Alignment for Unsupervised Domain Adaptation**](https://arxiv.org/abs/2106.10812),            
 > Guoqiang Wei, Cuiling Lan, Wenjun Zeng, Zhizheng Zhang, Zhibo Chen,      
 > NeurIPS 2021 | [arXiv](https://arxiv.org/abs/2106.10812)
 > 
-> [**MetaAlign: Coordinating Domain Alignment and Classification for Unsupervised Domain Adaptation**](http://arxiv.org/abs/2004.01888),            
+> [**MetaAlign: Coordinating Domain Alignment and Classification for Unsupervised Domain Adaptation**](https://arxiv.org/abs/2103.13575),            
 > Guoqiang Wei, Cuiling Lan, Wenjun Zeng, Zhibo Chen,      
 > CVPR 2021 | [arXiv](https://arxiv.org/abs/2103.13575)
 
