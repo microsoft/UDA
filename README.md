@@ -1,4 +1,4 @@
-# Unsupervised Domain Adaptation Toolbox for Computer Vision Tasks
+# Unsupervised Domain Adaptation for Computer Vision Tasks
 
 For many computer vision tasks (e.g., image classification, object detection), existing deep learning-based models usually suffer from significant performance degradation when directly applying them to testing data, due to the existence of domain gaps/shifts (e.g., when deployed in new environments, new edge devices, new production lines, where the characteristics of testing images are different from those in training). Our project aims to design unsupervised domain adaptation (UDA) models that are capable to perform well on target domains by exploiting unlabeled target domain data. Such techniques are in highly demand in many practical applications/products due to their low cost (not requiring annotation of the target data) and effectiveness in enhancing the performance. We aim to provide a toolbox that contains a series of effective unsupervised domain adaptation methods. Currently, it includes MetaAlign, ToAlign, etc. 
 
