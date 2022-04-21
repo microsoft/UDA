@@ -93,4 +93,4 @@ Any use of third-party trademarks or logos are subject to those third-party's po
 
 ## Acknowledgement
 
-We borrowed some code from [GVB](https://github.com/cuishuhao/GVB) and [DA_Detection](https://github.com/VisionLearningGroup/DA_Detection).
+We borrowed some code from [GVB](https://github.com/cuishuhao/GVB) and [DA_Detection](https://github.com/VisionLearningGroup/DA_Detection). Many thanks to the authors for their wonderful works.
