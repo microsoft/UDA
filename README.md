@@ -1,6 +1,9 @@
-# ToAlign
+# Unsupervised Domain Adaptation Toolbox for Computer Vision Tasks
 
-This is the official implementation for:
+For many computer vision tasks (e.g., image classification, object detection), existing deep learning-based models usually suffer from significant performance degradation when directly applying them to testing data, due to the existence of domain gaps/shifts (e.g., when deployed in new environments, new edge devices, new production lines, where the characteristics of testing images are different from those in training). Our project aims to design unsupervised domain adaptation (UDA) models that are capable to perform well on target domains by exploiting unlabeled target domain data. Such techniques are in highly demand in many practical applications/products due to their low cost (not requiring annotation of the target data) and effectiveness in enhancing the performance. We aim to provide a toolbox that contains a series of effective unsupervised domain adaptation methods. Currently, it includes MetaAlign, ToAlign, etc. 
+
+
+This includes the official implementation for:
 > [**ToAlign: Task-oriented Alignment for Unsupervised Domain Adaptation**](https://arxiv.org/abs/2106.10812),            
 > Guoqiang Wei, Cuiling Lan, Wenjun Zeng, Zhizheng Zhang, Zhibo Chen,      
 > NeurIPS 2021 | [arXiv](https://arxiv.org/abs/2106.10812)
