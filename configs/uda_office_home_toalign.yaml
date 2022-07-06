@@ -12,7 +12,7 @@ MODEL:
 
 DATASET:
   NAME: 'office_home'
-  ROOT: 'data/office_home'
+  ROOT: '/xujie/Recent/DataSet/OfficeHome'
 
 METHOD:
   W_ALG: 1.0

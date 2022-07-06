@@ -3,6 +3,7 @@
 # Licensed under The MIT License
 # --------------------------------------------------------
 
+from sklearn.cross_validation import LabelShuffleSplit
 import torch.nn as nn
 
 from utils.torch_funcs import init_weights_fc, init_weights_fc0, init_weights_fc1, init_weights_fc2
@@ -64,6 +65,16 @@ class BaseModel(nn.Module):
     def forward_backbone(self, x):
         """ input x --> output feature """
         return x
+    
+    def _get_pesudo_label(self, f):
+        y = self.fc(f)
+        if self.hda:
+            z0 = self.fc0(f)
+            z1 = self.fc1(f)
+            z2 = self.fc2(f)
+            z = z0 + z1 + z2
+            ## 这里需要去了解下HDA对pesudo的生成有没有什么特殊的。
+        return 
 
     def _get_toalign_weight(self, f, labels=None):
         assert labels is not None, f'labels should be asigned'
@@ -88,6 +99,8 @@ class BaseModel(nn.Module):
         assert f.dim() == 2, f'Expected dim of returned features to be 2, but found {f.dim()}'
 
         if toalign:
+            if labels is None:
+                labels = self._get_pesudo_label(f)
             w_pos = self._get_toalign_weight(f, labels=labels)
             f_pos = f * w_pos
             y_pos = self.fc(f_pos)
